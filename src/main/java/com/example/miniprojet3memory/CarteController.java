@@ -1,5 +1,8 @@
 package com.example.miniprojet3memory;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,18 +32,22 @@ public class CarteController {
     @FXML
     private Carte CarteActuel ;
     @FXML
-    private Label titre;
-    @FXML
     private Label partieFinie;
+    @FXML
+    private Label timer;
     @FXML
     private GridPane plateau;
     @FXML
     private ImageView photo;
 
     @FXML
-    protected void InitialisationJeu(MouseEvent event) {
+    protected void InitialisationJeu() {
         InitialisationListe();
         InitialisationTableau();
+        partieFinie.setVisible(false);
+        /*Timeline tm = new Timeline(new KeyFrame(Duration.seconds(60.0), actionEvent -> InitialisationJeu()));
+        tm.setCycleCount(Animation.INDEFINITE);
+        tm.play();*/
     }
     @FXML
     protected void InitialisationListe() {
@@ -113,7 +121,7 @@ public class CarteController {
             }
         }
         listeIndex=0;
-        titre.setText("coucou");
+
     }
 
 
