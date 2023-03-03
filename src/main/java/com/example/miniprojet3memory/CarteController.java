@@ -33,12 +33,10 @@ public class CarteController {
     private Carte CarteActuel ;
     @FXML
     private Label partieFinie;
-    @FXML
-    private Label timer;
+
     @FXML
     private GridPane plateau;
-    @FXML
-    private ImageView photo;
+
 
     @FXML
     protected void InitialisationJeu() {
@@ -127,25 +125,26 @@ public class CarteController {
 
     @FXML
     protected void CliqueCase(Carte c) {
-
-        if(nbClique<2){
+    if(c.isValide()==false) {
+        if (nbClique < 2) {
             nbClique++;
 
-        }else if (nbClique==2){
-            if (CartePrecedent.getFace().getUrl().equals(CarteActuel.getFace().getUrl()) && CartePrecedent!= null &&CarteActuel!=null){
+        } else if (nbClique == 2) {
+            if (CartePrecedent.getFace().getUrl().equals(CarteActuel.getFace().getUrl()) && CartePrecedent != null && CarteActuel != null) {
                 CartePrecedent.carteEstValide();
                 CarteActuel.carteEstValide();
-                nbCarteVailde=nbCarteVailde+2;
-                nbClique=1;
-                 if (nbCarteVailde==12){
+                nbCarteVailde = nbCarteVailde + 2;
+                nbClique = 1;
+                if (nbCarteVailde == 12) {
                     partieFinie.setVisible(true);
-                 }
-            }else{
+                }
+            } else {
                 CartePrecedent.CarteFausse();
                 CarteActuel.CarteFausse();
-                nbClique=1;
+                nbClique = 1;
             }
         }
+
 
         c.CarteClique();
         InitialisationTableau();
@@ -155,7 +154,8 @@ public class CarteController {
         }
         CarteActuel = c;
 
-       // InitialisationTableau();
+    }
+
     }
 
 
